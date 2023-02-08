@@ -1,0 +1,9 @@
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* LAYOUT */
+  .main-layout > *:not(.full) {
+  width: min(100% - 25px, 1900px);
+  margin-inline: auto;
+  }
