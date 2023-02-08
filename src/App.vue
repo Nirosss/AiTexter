@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+import InputOutput from './components/inputOutput.vue';
 </script>
 
 <template>
- 
+  <InputOutput />
   <HelloWorld />
 </template>
 
