@@ -9,8 +9,7 @@ const count = ref(0)
 <template>
     <main class="input-output-grid">
         <section class="user-input">
-            <textarea rows="2" placeholder="Write or paste your text here" maxlength="280">
-            </textarea>
+            <textarea placeholder="Place your text here"></textarea>
             <div class="user-input-actions">
                 <button>send</button>
             </div>
@@ -29,19 +28,16 @@ const count = ref(0)
     grid-template-columns: 400px;
     grid-template-rows: 250px 250px;
 
-
     @media screen and (width >=750px) {
         grid-template-columns: 1fr 300px 300px 1fr;
         grid-template-rows: 250px;
 
         .user-input {
             grid-column: 2;
-            background-color: green;
         }
 
         .ai-output {
             grid-column: 3;
-            background-color: aqua;
         }
     }
 
@@ -49,23 +45,42 @@ const count = ref(0)
         grid-template-columns: 1fr 400px 400px 1fr;
     }
 
-    .user-input {
-        padding: 24px 10px 10px 24px;
+    @media screen and (width >=1200px) {
+        grid-template-columns: 1fr 500px 500px 1fr;
+    }
 
-        background-color: transparent;
+    @media screen and (width >=1920px) {
+        grid-template-columns: 10% 1fr 1fr 10%;
+    }
+
+    > * {
+        background-color: white;
         border: 0.01px #e5d9e4 solid;
+        padding: 24px 10px 10px 24px;
+    }
+
+    .user-input {
+        display: flex;
+        flex-direction: column;
+
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
 
         textarea {
+            flex-basis: 80%;
+
             resize: none;
             outline: none;
             border: none;
+            color: #1c1c1c;
+
+            &::placeholder {
+                color: #1c1c1c;
+            }
         }
     }
+
     .ai-output {
-        background-color: transparent;
-        border: 0.01px #e5d9e4 solid;;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
         border-inline-start: none;
