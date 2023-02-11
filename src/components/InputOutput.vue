@@ -61,6 +61,7 @@ h1 {
 
 
 .input-output-grid {
+   
     display: grid;
     justify-content: center;
     grid-template-columns: 400px;
