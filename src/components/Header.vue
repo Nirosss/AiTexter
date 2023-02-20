@@ -1,6 +1,3 @@
-<script setup>
-  import { ref } from 'vue'
-</script>
 
 <template>
   <header class="header-main full">
