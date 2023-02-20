@@ -1,21 +1,31 @@
-.header-main{
-    height: 80px;
-background-color:#8B0ABE;
-    .logo-img {
-  height: 80px;
- 
-}  
-.logo-img:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.header-btn{
+.header-main {
+  height: 60px;
+  background-color: #8B0ABE;
+  display: flex;
+  
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-img {
+    height: 60px;
+
+  }
+
+  .logo-img:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+
+  .header-btn {
     all: unset;
-    color:  rgba(255, 255, 255, 0.87);
+    color: rgba(255, 255, 255, 0.87);
     font-size: 1.2rem;
     cursor: pointer;
-    &:hover{
-        box-shadow: inset 0px -5px 0px 0px;
-    }
-}
-}
 
+    &:hover {
+      box-shadow: inset 0px -5px 0px 0px;
+    }
+  }
+}

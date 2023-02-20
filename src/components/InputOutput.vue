@@ -1,27 +1,52 @@
 <script setup lang="ts">
-import { ref, reactive  } from 'vue'
+import { ref, reactive } from 'vue'
 
-defineProps<{ msg: string }>()
-
-
+function printData() {
+    if (userInput.value && value.value) console.log(userInput.value, value.value);
+}
 const count = ref(0)
 const userInput = ref('')
+
+const value = ref('')
+
+const options = [
+    {
+        value: 'Professional',
+        label: 'Professional',
+    },
+    {
+        value: 'Formal',
+        label: 'Formal',
+    },
+    {
+        value: 'Correct',
+        label: 'Correct',
+    },
+    {
+        value: 'Cool',
+        label: 'Cool',
+    },
+    {
+        value: 'Academic',
+        label: 'Academic',
+    },
+]
 </script>
 
 <template>
     <main>
-        <h1 class="input-output-header anim-typewriter">Let's makes your text <span class="time-of-day"></span>!</h1>
+        <h2 class="input-output-header anim-typewriter">Let's makes your text <span class="word"></span>!</h2>
         <section class="input-output-grid">
 
             <section class="user-input">
-                <textarea 
-                    placeholder="Place your text here"
-                    v-model="userInput"
-                >
-                    
-                </textarea>
+                <textarea placeholder="Place your text here" v-model="userInput">
+
+                        </textarea>
                 <div class="user-input-actions">
-                    <button :class="{ 'isActive': userInput }">
+                    <el-select v-model="value" class="m-2" placeholder="Select" size="large">
+                        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+                    </el-select>
+                    <button :class="{ 'isActive': userInput && value }" @click="printData">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-magic" viewBox="0 0 16 16">
                             <path
@@ -33,13 +58,18 @@ const userInput = ref('')
             </section>
 
             <section class="ai-output">
-                output
+                
             </section>
         </section>
     </main>
 </template>
 
 <style scoped lang="scss">
+.el-select.el-select--large.m-2 {
+    max-width: 111px;
+    height: 44px;
+}
+
 h1 {
     font-size: 25px;
 }
@@ -63,46 +93,27 @@ h1 {
 .input-output-grid {
     display: grid;
     justify-content: center;
-    grid-template-columns: 400px;
+    grid-template-columns: 100%;
     grid-template-rows: 250px 250px;
-
-    @media screen and (width >=750px) {
-        grid-template-columns: 1fr 300px 300px 1fr;
-        grid-template-rows: 250px;
-
-        .user-input {
-            grid-column: 2;
-        }
-
-        .ai-output {
-            grid-column: 3;
-        }
-    }
-
-    @media screen and (width >=950px) {
-        grid-template-columns: 1fr 400px 400px 1fr;
-    }
-
-    @media screen and (width >=1200px) {
-        grid-template-columns: 1fr 500px 500px 1fr;
-    }
-
-    @media screen and (width >=1920px) {
-        grid-template-columns: 10% 1fr 1fr 10%;
-    }
-
-    >* {
-        background-color: white;
-        border: 0.01px #e5d9e4 solid;
-        padding: 24px 10px 10px 24px;
-    }
 
     .user-input {
         display: flex;
         flex-direction: column;
 
+
         border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
+        border-top-right-radius: 10px;
+        // border-top-left-radius: 10px;
+        // border-bottom-left-radius: 10px;
+
+        .user-input-actions {
+            display: flex;
+            justify-content: space-between;
+
+            .el-input__wrapper {
+                max-width: 113px;
+            }
+        }
 
         textarea {
             flex-basis: 80%;
@@ -111,6 +122,9 @@ h1 {
             outline: none;
             border: none;
             color: #1c1c1c;
+
+            font-family: Roboto;
+            font-size: 16px;
 
             &::placeholder {
                 color: #1c1c1c;
@@ -148,21 +162,65 @@ h1 {
     }
 
     .ai-output {
-        border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
-        border-inline-start: none;
+        border-bottom-left-radius: 10px;
+        border-block-start: none;
     }
 
-    /* The typing animation */
+    >* {
+        background-color: white;
+        border: 0.01px #e5d9e4 solid;
+        padding: 24px 10px 10px 24px;
+    }
+
+    @media screen and (width >=400px) {
+        grid-template-columns: 400px;
+    }
+
+    @media screen and (width >=750px) {
+        grid-template-columns: 1fr 300px 300px 1fr;
+        grid-template-rows: 250px;
+
+        .user-input {
+            grid-column: 2;
+            border-top-right-radius: 00px;
+            border-bottom-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .ai-output {
+            grid-column: 3;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 0px;
+
+            border-inline-start: none;
+            border-block-start: 0.01px #e5d9e4 solid;
+        }
+    }
+
+    @media screen and (width >=950px) {
+        grid-template-columns: 1fr 400px 400px 1fr;
+    }
+
+    @media screen and (width >=1200px) {
+        grid-template-columns: 1fr 500px 500px 1fr;
+    }
+
+    @media screen and (width >=1920px) {
+        grid-template-columns: 10% 1fr 1fr 10%;
+    }
+
 }
 
+/* The typing animation */
 @import '../assets/styles/basics/typed';
 
 h1 {
     text-align: center;
 }
 
-.time-of-day {
+.word {
     padding: 0 0 0 3px;
     background-color: #a855c8;
     color: white;
