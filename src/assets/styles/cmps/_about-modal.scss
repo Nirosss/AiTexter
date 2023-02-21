@@ -4,18 +4,20 @@
   width: max(100% - 25px, 480px);
   margin-inline: auto;
   z-index: 9000;
-  // left: calc(100vw - 780px * 1.742);
   background-color: white;
-  border: 1px solid #00000030;
+  border: 1px solid rgba(0, 0, 0, 0.1882352941);
   border-radius: 13px;
-  box-shadow: 0 0 5px 5px hsla(0, 0%, 0%, 0.082);
+  box-shadow: 0 0 5px 5px hsl(0deg 0% 0% / 8%);
   height: 500px;
-position: relative;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
   h2 {
     margin-top: 1.5rem;
     padding-left: 25px;
   }
-  
+
   .close-about-modal {
     //button
     all: unset;
@@ -26,7 +28,7 @@ position: relative;
     font-size: 18px;
     font-weight: 600;
     right: 5px;
-        :hover {
+    :hover {
       background-color: rgb(158, 152, 152);
     }
     &.svg {
@@ -34,6 +36,19 @@ position: relative;
       scale: 1.5;
       padding: 2px;
       border-radius: 100%;
+    }
+  }
+  .about-us {
+    margin-inline: auto;
+    width: 300px;
+    text-align: center;
+    display: flex column;
+    .img-container {
+      img {
+        height: 80px;
+        border-radius: 100%;
+        border: 1px black solid;
+      }
     }
   }
 }
