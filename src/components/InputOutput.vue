@@ -4,10 +4,10 @@ import axios from 'axios'
 
 async function sendFormattingRequest() {
     if (!(userInput.value && formatType.value)) return
-    
-    const res = await axios.post('http://127.0.0.1:8080/', {userInput: userInput.value, formatType: formatType.value})
+
+    const res = await axios.post('http://127.0.0.1:8080/', { userInput: userInput.value, formatType: formatType.value })
     console.log(res.data.translation[0].text)
-    output = res.data.translation[0].text
+    output.data = res.data.translation[0].text
 }
 
 const count = ref(0)
@@ -15,7 +15,9 @@ const userInput = ref('')
 
 const formatType = ref('')
 
-var output = ""
+const output = reactive({
+    data: '',
+})
 
 const options = [
     {
@@ -57,7 +59,7 @@ const options = [
             <section class="user-input">
                 <textarea placeholder="Place your text here" v-model="userInput">
 
-                                    </textarea>
+                                        </textarea>
                 <div class="user-input-actions">
                     <el-select v-model="formatType" class="m-2" placeholder="Select" size="large">
                         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
@@ -74,7 +76,7 @@ const options = [
             </section>
 
             <section class="ai-output">
-                {{ output }}
+                {{ output.data }}
             </section>
         </section>
     </main>
