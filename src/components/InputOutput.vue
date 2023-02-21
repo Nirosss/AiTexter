@@ -1,34 +1,50 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+import axios from 'axios'
 
-function printData() {
-    if (userInput.value && value.value) console.log(userInput.value, value.value);
+async function sendFormattingRequest() {
+    if (!(userInput.value && formatType.value)) return
+    
+    const res = await axios.post('http://127.0.0.1:8080/', {userInput: userInput.value, formatType: formatType.value})
+    console.log(res.data.translation[0].text)
+    output = res.data.translation[0].text
 }
+
 const count = ref(0)
 const userInput = ref('')
 
-const value = ref('')
+const formatType = ref('')
+
+var output = ""
 
 const options = [
     {
-        value: 'Professional',
-        label: 'Professional',
+        value: 'Correct',
+        label: 'Correct Grammar Only',
     },
     {
         value: 'Formal',
         label: 'Formal',
     },
     {
-        value: 'Correct',
-        label: 'Correct',
+        value: 'Casual',
+        label: 'Casual',
     },
     {
-        value: 'Cool',
-        label: 'Cool',
+        value: "Persuasive",
+        label: "Persuasive"
     },
     {
-        value: 'Academic',
-        label: 'Academic',
+        value: 'Senior',
+        label: 'As Senior Dev',
+    },
+    {
+        value: 'HR',
+        label: 'As HR specialist',
+    },
+    {
+        value: 'Corporation',
+        label: 'Like Corporation leader',
     },
 ]
 </script>
@@ -41,12 +57,12 @@ const options = [
             <section class="user-input">
                 <textarea placeholder="Place your text here" v-model="userInput">
 
-                        </textarea>
+                                    </textarea>
                 <div class="user-input-actions">
-                    <el-select v-model="value" class="m-2" placeholder="Select" size="large">
+                    <el-select v-model="formatType" class="m-2" placeholder="Select" size="large">
                         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
                     </el-select>
-                    <button :class="{ 'isActive': userInput && value }" @click="printData">
+                    <button :class="{ 'isActive': userInput && formatType }" @click="sendFormattingRequest">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-magic" viewBox="0 0 16 16">
                             <path
@@ -58,7 +74,7 @@ const options = [
             </section>
 
             <section class="ai-output">
-                
+                {{ output }}
             </section>
         </section>
     </main>
@@ -91,7 +107,7 @@ h1 {
 
 
 .input-output-grid {
-   
+
     display: grid;
     justify-content: center;
     grid-template-columns: 100%;
@@ -114,6 +130,8 @@ h1 {
             .el-input__wrapper {
                 max-width: 113px;
             }
+
+
         }
 
         textarea {
@@ -230,7 +248,7 @@ h1 {
         font-weight: 600;
     }
 
-    @include typed("AI", "Funny", "Professional", "Lazy", "Cool", "Young",
+    @include typed("AI", "Correct", "Senior", "HR", "Corporative", "Formal", "Casual",
         "Threatening", "Persuasive", "Informative", "Formal",
         "Informal", "Emotional", "Sarcastic", "Inspirational",
         "Motivational", "Romantic", "Academic", "Creative",
