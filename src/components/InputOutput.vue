@@ -62,6 +62,21 @@
       label: 'Like Corporation leader',
     },
   ]
+
+  /* 
+This should be removed
+
+getDemoData()
+
+async function getDemoData() {
+    return new Promise<any>((resolve, reject) => {
+      let text = `In general it is always smart to use your existing config.json when updating the menu exe.)`
+      setTimeout(() => {
+        resolve({ data: { translation: text } })
+      }, 2000)
+    })
+  }
+*/
 </script>
 
 <template>
@@ -133,20 +148,4 @@
     </section>
   </main>
 </template>
-
-/* 
-This should be removed
-
-getDemoData()
-
-async function getDemoData() {
-    return new Promise<any>((resolve, reject) => {
-      let text = `In general it is always smart to use your existing config.json when updating the menu exe.)`
-      setTimeout(() => {
-        resolve({ data: { translation: text } })
-      }, 2000)
-    })
-  }
-
-*/
 
