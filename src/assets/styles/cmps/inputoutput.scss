@@ -1,0 +1,261 @@
+.el-select.el-select--large.m-2 {
+  max-width: 111px;
+  height: 44px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a855c8;
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+}
+
+.typing-demo {
+  width: 99%;
+  animation: typing 2s steps(28), blink 0.5s step-end infinite alternate;
+  white-space: wrap;
+  overflow: hidden;
+  border-right: 2px solid;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+h1 {
+  font-size: 25px;
+}
+
+.header-wrapper {
+  text-align: center;
+
+  .input-output-header {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1c1c1c;
+    text-align: center;
+
+    span {
+      font-weight: 900;
+    }
+  }
+}
+
+.input-output-grid {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 100%;
+  grid-template-rows: 250px 250px;
+
+  .user-input button,
+  .ai-output button {
+    padding-inline: 20px;
+    padding-block: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border: 0;
+    background-color: #8b0abe54;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    transition: 0.4s;
+    box-shadow: 0 0 0px #a855c8;
+    cursor: not-allowed;
+
+    &.isActive {
+      background-color: #a855c8;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #b069cc;
+        box-shadow: 0 0 3px #a855c8;
+      }
+    }
+  }
+
+  .user-input {
+    display: flex;
+    flex-direction: column;
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    // border-top-left-radius: 10px;
+    // border-bottom-left-radius: 10px;
+
+    .user-input-actions {
+      display: flex;
+      justify-content: space-between;
+
+      .el-input__wrapper {
+        max-width: 113px;
+      }
+    }
+
+    textarea {
+      flex-basis: 80%;
+      max-height: 160px;
+      margin-block: 10px;
+
+      resize: none;
+      outline: none;
+      border: none;
+      color: #1c1c1c;
+
+      font-family: Roboto;
+      font-size: 16px;
+
+      &::placeholder {
+        color: #1c1c1c;
+        font-family: Roboto;
+        font-size: 16px;
+      }
+    }
+  }
+
+  > * {
+    background-color: white;
+    border: 0.01px #e5d9e4 solid;
+    padding: 24px 10px 10px 24px;
+    overflow-y: auto;
+  }
+
+  .ai-output {
+    display: flex;
+    flex-direction: column;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-block-start: none;
+    padding: 24px 24px 10px 24px;
+
+    .string-wrapper {
+      flex-basis: 80%;
+      max-height: 160px;
+      margin-block: 10px;
+      overflow-y: auto;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .ai-output-actions {
+      display: flex;
+      justify-content: flex-end;
+
+      .el-input__wrapper {
+        max-width: 113px;
+      }
+    }
+  }
+
+  @media screen and (width >=400px) {
+    grid-template-columns: 400px;
+  }
+
+  @media screen and (width >=750px) {
+    grid-template-columns: 1fr 300px 300px 1fr;
+    grid-template-rows: 250px;
+
+    .user-input {
+      grid-column: 2;
+      border-top-right-radius: 00px;
+      border-bottom-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    .ai-output {
+      grid-column: 3;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 0px;
+
+      border-inline-start: none;
+      border-block-start: 0.01px #e5d9e4 solid;
+    }
+  }
+
+  @media screen and (width >=950px) {
+    grid-template-columns: 1fr 400px 400px 1fr;
+  }
+
+  @media screen and (width >=1200px) {
+    grid-template-columns: 1fr 500px 500px 1fr;
+  }
+
+  @media screen and (width >=1920px) {
+    grid-template-columns: 10% 1fr 1fr 10%;
+  }
+}
+
+/* The typing animation */
+@import '../basics/typed';
+
+h1 {
+  text-align: center;
+}
+
+.word {
+  padding: 0 0 0 3px;
+  background-color: #a855c8;
+  color: white;
+
+  &::before {
+    font-weight: 600;
+  }
+
+  @include typed(
+    'AI',
+    'Correct',
+    'Senior',
+    'HR',
+    'Corporative',
+    'Formal',
+    'Casual',
+    'Threatening',
+    'Persuasive',
+    'Informative',
+    'Formal',
+    'Informal',
+    'Emotional',
+    'Sarcastic',
+    'Inspirational',
+    'Motivational',
+    'Romantic',
+    'Academic',
+    'Creative',
+    'Technical',
+    2,
+    (
+      caret-width: 2px,
+      caret-space: 2px,
+      iterations: 1,
+    )
+  );
+}
