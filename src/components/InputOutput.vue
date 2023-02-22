@@ -2,21 +2,40 @@
 import { ref, reactive } from 'vue'
 import axios from 'axios'
 
+
 async function sendFormattingRequest() {
     if (!(userInput.value && formatType.value)) return
 
-    const res = await axios.post('http://localhost:8080/', { userInput: userInput.value, formatType: formatType.value })
-    console.log(res.data.translation[0].text)
-    output.data = res.data.translation[0].text
+    output.value = ""
+    const res = await getDemoData();//axios.post('http://127.0.0.1:8080/translate', {text: userInput.value, from:'English' ,to:formatType.value})
+    console.log(res.data.translation)
+    output.value = res.data.translation
+}
+
+async function getDemoData() {
+    return new Promise<any>((resolve, reject) => {
+        let text = `In general it is always smart to use your existing config.json when updating the menu exe.)`
+        setTimeout(() => { resolve({ data: { translation: text } }) }, 2000)
+    })
+}
+
+function copyToClipboard() {
+    var input = document.createElement('input')
+    input.setAttribute('value', output.value)
+    document.body.appendChild(input)
+    input.select()
+    var result = document.execCommand('copy')
+    document.body.removeChild(input)
+    return result
 }
 
 const count = ref(0)
 const userInput = ref('')
-
+const outputString = ref(null);
 const formatType = ref('')
 
 const output = reactive({
-    data: '',
+    value: "",
 })
 
 const options = [
@@ -57,9 +76,8 @@ const options = [
         <section class="input-output-grid">
 
             <section class="user-input">
-                <textarea placeholder="Place your text here" v-model="userInput">
+                <textarea placeholder="Place your text here" v-model="userInput"></textarea>
 
-                                        </textarea>
                 <div class="user-input-actions">
                     <el-select v-model="formatType" class="m-2" placeholder="Select" size="large">
                         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
@@ -76,7 +94,22 @@ const options = [
             </section>
 
             <section class="ai-output">
-                {{ output.data }}
+                <div class="string-wrapper">
+                    <p ref="output-string" :class="{ 'typing-demo': output.value }">{{ output.value }}</p>
+                </div>
+
+                <div class="ai-output-actions">
+                    <button :class="{ 'isActive': output.value }" @click="copyToClipboard">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-clipboard" viewBox="0 0 16 16">
+                            <path
+                                d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                            <path
+                                d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                        </svg>
+                        Copy
+                    </button>
+                </div>
             </section>
         </section>
     </main>
@@ -87,6 +120,51 @@ const options = [
     max-width: 111px;
     height: 44px;
 }
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #a855c8;
+    background-image: -webkit-linear-gradient(45deg,
+            rgba(255, 255, 255, .2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, .2) 50%,
+            rgba(255, 255, 255, .2) 75%,
+            transparent 75%,
+            transparent)
+}
+
+.typing-demo {
+  width: 22ch;
+  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+    
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}
+
+
+
 
 h1 {
     font-size: 25px;
@@ -115,47 +193,8 @@ h1 {
     grid-template-columns: 100%;
     grid-template-rows: 250px 250px;
 
-    .user-input {
-        display: flex;
-        flex-direction: column;
-
-
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        // border-top-left-radius: 10px;
-        // border-bottom-left-radius: 10px;
-
-        .user-input-actions {
-            display: flex;
-            justify-content: space-between;
-
-            .el-input__wrapper {
-                max-width: 113px;
-            }
-
-
-        }
-
-        textarea {
-            flex-basis: 80%;
-
-            resize: none;
-            outline: none;
-            border: none;
-            color: #1c1c1c;
-
-            font-family: Roboto;
-            font-size: 16px;
-
-            &::placeholder {
-                color: #1c1c1c;
-                font-family: Roboto;
-                font-size: 16px;
-            }
-        }
-
-        button {
-            padding-inline: 20px;
+    .user-input button, .ai-output button{
+        padding-inline: 20px;
             padding-block: 14px;
             display: flex;
             justify-content: center;
@@ -179,19 +218,82 @@ h1 {
                     box-shadow: 0 0 3px #a855c8;
                 }
             }
-        }
     }
 
-    .ai-output {
-        border-bottom-right-radius: 10px;
-        border-bottom-left-radius: 10px;
-        border-block-start: none;
+    .user-input {
+        display: flex;
+        flex-direction: column;
+
+
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        // border-top-left-radius: 10px;
+        // border-bottom-left-radius: 10px;
+
+        .user-input-actions {
+            display: flex;
+            justify-content: space-between;
+
+            .el-input__wrapper {
+                max-width: 113px;
+            }
+        }
+
+        textarea {
+            flex-basis: 80%;
+            max-height: 160px;
+            margin-block: 10px;
+
+            resize: none;
+            outline: none;
+            border: none;
+            color: #1c1c1c;
+
+            font-family: Roboto;
+            font-size: 16px;
+
+            &::placeholder {
+                color: #1c1c1c;
+                font-family: Roboto;
+                font-size: 16px;
+            }
+        }
     }
 
     >* {
         background-color: white;
         border: 0.01px #e5d9e4 solid;
         padding: 24px 10px 10px 24px;
+        overflow-y: auto;
+    }
+
+    .ai-output {
+        display: flex;
+        flex-direction: column;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-block-start: none;
+        padding: 24px 24px 10px 24px;
+
+        .string-wrapper {
+            flex-basis: 80%;
+            max-height: 160px;
+            margin-block: 10px;
+            overflow-y: auto;
+
+            p {
+                margin: 0;
+            }
+        }
+
+        .ai-output-actions {
+            display: flex;
+            justify-content: flex-end;
+
+            .el-input__wrapper {
+                max-width: 113px;
+            }
+        }
     }
 
     @media screen and (width >=400px) {
