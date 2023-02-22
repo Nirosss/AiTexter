@@ -5,7 +5,7 @@ import axios from 'axios'
 async function sendFormattingRequest() {
     if (!(userInput.value && formatType.value)) return
 
-    const res = await axios.post('http://127.0.0.1:8080/', { userInput: userInput.value, formatType: formatType.value })
+    const res = await axios.post('http://localhost:8080/', { userInput: userInput.value, formatType: formatType.value })
     console.log(res.data.translation[0].text)
     output.data = res.data.translation[0].text
 }
