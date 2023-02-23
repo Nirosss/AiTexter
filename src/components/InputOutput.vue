@@ -43,7 +43,7 @@ function copyToClipboard() {
 
 function setTypewriter(text: string, startIdx: number = 0) {
     output.value = text.substring(0, startIdx)
-    const timeout = Math.random() * 1000;
+    const timeout = Math.random() * 150;
     const interval = setInterval(() => {
         output.value += text.charAt(startIdx)
         startIdx++
@@ -54,7 +54,7 @@ function setTypewriter(text: string, startIdx: number = 0) {
         } else {
             clearInterval(interval)
         }
-    })
+    }, timeout)
 
 }
 
