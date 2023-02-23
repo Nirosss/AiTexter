@@ -16,8 +16,8 @@ const isRequestSended = reactive({
 
 async function sendFormattingRequest() {
     if (!(userInput.value && formatType.value)) return
-
     output.value = ''
+    console.log(formatType.value)
     isRequestSended.value = true
     try {
         const res = await axios.post('http://127.0.0.1:8080/translate', {
@@ -55,10 +55,7 @@ function setTypewriter(text: string, startIdx: number = 0) {
             clearInterval(interval)
         }
     }, timeout)
-
 }
-
-
 
 const options = [
     {
@@ -78,11 +75,11 @@ const options = [
         label: 'Persuasive',
     },
     {
-        value: 'Senior Dev style',
+        value: 'Senior program developer',
         label: 'As Senior Dev',
     },
     {
-        value: 'HR specialist style',
+        value: 'HR specialist',
         label: 'As HR specialist',
     },
     {
@@ -90,21 +87,6 @@ const options = [
         label: 'Like Corporation leader',
     },
 ]
-
-/*
-This should be removed
-
-getDemoData()
-
-async function getDemoData() {
-  return new Promise<any>((resolve, reject) => {
-    let text = `In general it is always smart to use your existing config.json when updating the menu exe.)`
-    setTimeout(() => {
-      resolve({ data: { translation: text } })
-    }, 2000)
-  })
-}
-*/
 </script>
 
 <template>
