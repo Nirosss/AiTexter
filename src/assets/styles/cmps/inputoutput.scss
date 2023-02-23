@@ -27,6 +27,11 @@
   );
 }
 
+.el-input.el-input--large.el-input--suffix {
+  height: 44px;
+  width: 111px;
+}
+
 .typing-demo {
   width: 99%;
   animation: typing 2s steps(28), blink 0.5s step-end infinite alternate;
