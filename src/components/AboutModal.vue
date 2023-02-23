@@ -70,15 +70,17 @@
     <div class="about-us">
       <div class="about-us img-container flex space-even">
         <a href="https://github.com/AvishaiDotan">
-          <img  src="../assets/avishai.jfif" alt="avatar" />
+          
+          <img  src="../../src/assets/avishai.jfif" alt="avatar" />
         </a>
         <a href="https://github.com/Nirosss">
-          <img  src="../assets/nir.jpg" alt="avatar" />
+          
+          <img  src="../../src/assets/nir.jpg" alt="avatar" />
         </a>
         
       </div>
       <div class="about-us txt-container">
-        <h5>Created by Avishai Dotan & Nir Roiter</h5>
+        <h5>Created by Nir Roiter & Avishai Dotan</h5>
       </div>
   </div>
 </div></template>

@@ -30,6 +30,11 @@
 .el-input.el-input--large.el-input--suffix {
   height: 44px;
   width: 111px;
+
+  @media screen and (width <= 310px) {
+    height: 44px;
+    width: 70px;
+ }
 }
 
 .typing-demo {
@@ -103,11 +108,19 @@ h1 {
         box-shadow: 0 0 3px #a855c8;
       }
     }
+
+    @media screen and (width <= 310px) {
+       padding-inline: 2px;
+       font-size: 10px;
+    }
   }
+
+
 
   .user-input {
     display: flex;
     flex-direction: column;
+    padding: 24px 24px 24px 24px;
 
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -157,7 +170,7 @@ h1 {
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-block-start: none;
-    padding: 24px 24px 10px 24px;
+    padding: 24px 24px 24px 24px;
 
     .string-wrapper {
       flex-basis: 80%;
@@ -193,6 +206,7 @@ h1 {
       border-top-right-radius: 00px;
       border-bottom-left-radius: 10px;
       border-bottom-left-radius: 10px;
+      padding: 24px 10px 10px 24px;
     }
 
     .ai-output {
@@ -203,6 +217,7 @@ h1 {
 
       border-inline-start: none;
       border-block-start: 0.01px #e5d9e4 solid;
+      padding: 24px 24px 10px 24px;
     }
   }
 

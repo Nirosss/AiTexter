@@ -13,9 +13,9 @@
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
+
   h2 {
     margin-top: 1.5rem;
-    padding-left: 25px;
   }
 
   .close-about-modal {
@@ -28,9 +28,11 @@
     font-size: 18px;
     font-weight: 600;
     top: 5px;
+
     :hover {
       background-color: rgb(158, 152, 152);
     }
+
     &.svg {
       margin-top: 15px;
       scale: 1.5;
@@ -38,14 +40,33 @@
       border-radius: 100%;
     }
   }
+
   .about-us {
     margin-inline: auto;
     text-align: center;
     display: flex column;
+
     .img-container {
+      transform: translateX(40px);
+      @media screen and (width <= 300px) {
+        transform: translateX(40px);
+        display: flex;
+        flex-direction: column;
+      }
+
       img {
-        height: 80px;
+        height: 140px;
+
+        @media screen and (width <=470px) {
+          height: 100px;
+        }
+
+        @media screen and (width <=370px) {
+          height: 70px;
+        }
+
         border-radius: 100%;
+        padding-inline-end: 50px;
       }
     }
   }
@@ -56,8 +77,14 @@
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
+
     svg {
       height: 50px;
     }
+  }
+
+  .about-info ul {
+    padding: 0;
+    margin: 0;
   }
 }
