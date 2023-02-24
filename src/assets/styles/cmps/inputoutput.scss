@@ -81,6 +81,10 @@ h1 {
   grid-template-columns: 100%;
   grid-template-rows: 250px 250px;
 
+  @media screen and (width <= 350px) {
+    margin-block-start: 20px;
+  }
+
   .user-input button,
   .ai-output button {
     padding-inline: 20px;
@@ -281,8 +285,12 @@ h1 {
   h2 {
     margin-block-start: 200px;
 
-    @media screen and (width <=350px) {
+    @media screen and (width <=800px) {
       margin-block-start: 50px;
+    }
+
+    @media screen and (width <=350px) {
+      margin-block-start: 20px;
     }
 
     color: white;
@@ -301,6 +309,6 @@ h1 {
 
 .anim-typewriter {
   @media screen and (width <=350px) {
-    font-size: 15px;
+    display: none;
   }
 }

@@ -177,7 +177,7 @@ const options = [
 
         <section class="about-tool">
             <h2>AITexter is free tool powered by free services thats make your english <span>clear and precise</span>.</h2>
-            <p>Want to contribute? Please contact us for details. You can find more information on the about page.</p>
+            <p>Would you like to contribute? For more information, please contact us.</p>
         </section>
     </main>
 </template>

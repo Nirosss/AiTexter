@@ -16,10 +16,10 @@
       </svg>
     </button>
     <div class="about-intro">
-      <h2>This OpenAI tool allows you to re-style any text you want</h2>
+      <h2>AITexter tool allows you to re-style any text you want</h2>
       <p>
-        The converter uses a node.js server to deliver the request prompt to
-        OpenAI servers, it can be easily modified to perform any task ChatGpt is
+        The converter uses a Node.js server to deliver the request prompt to
+        OpenAI servers, it can be easily modified to perform any task ChatGPT is
         capable of.
       </p>
     </div>
