@@ -5,7 +5,7 @@ import {
     focusDirective,
     customOnDirective,
     clickOutsideDirective,
-  } from './directives/index.js'
+  } from '../src/directives/index.js'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
