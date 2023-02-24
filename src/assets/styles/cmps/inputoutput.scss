@@ -15,26 +15,24 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: #a855c8;
-  background-image: -webkit-linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.2) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0.2) 75%,
-    transparent 75%,
-    transparent
-  );
+  background-image: -webkit-linear-gradient(45deg,
+      rgba(255, 255, 255, 0.2) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.2) 75%,
+      transparent 75%,
+      transparent);
 }
 
 .el-input.el-input--large.el-input--suffix {
   height: 44px;
   width: 111px;
 
-  @media screen and (width <= 310px) {
+  @media screen and (width <=310px) {
     height: 44px;
     width: 70px;
- }
+  }
 }
 
 .typing-demo {
@@ -70,6 +68,7 @@ h1 {
     color: #1c1c1c;
     text-align: center;
 
+
     span {
       font-weight: 900;
     }
@@ -81,6 +80,10 @@ h1 {
   justify-content: center;
   grid-template-columns: 100%;
   grid-template-rows: 250px 250px;
+
+  @media screen and (width <= 350px) {
+    margin-block-start: 20px;
+  }
 
   .user-input button,
   .ai-output button {
@@ -109,9 +112,9 @@ h1 {
       }
     }
 
-    @media screen and (width <= 310px) {
-       padding-inline: 2px;
-       font-size: 10px;
+    @media screen and (width <=310px) {
+      padding-inline: 2px;
+      font-size: 10px;
     }
   }
 
@@ -137,6 +140,7 @@ h1 {
     }
 
     textarea {
+      cursor: default;
       flex-basis: 80%;
       max-height: 160px;
       margin-block: 10px;
@@ -157,7 +161,7 @@ h1 {
     }
   }
 
-  > * {
+  >* {
     background-color: white;
     border: 0.01px #e5d9e4 solid;
     padding: 24px 10px 10px 24px;
@@ -250,8 +254,7 @@ h1 {
     font-weight: 600;
   }
 
-  @include typed(
-    'AI',
+  @include typed('AI',
     'Correct',
     'Senior',
     'HR',
@@ -272,19 +275,27 @@ h1 {
     'Creative',
     'Technical',
     2,
-    (
-      caret-width: 2px,
+    (caret-width: 2px,
       caret-space: 2px,
       iterations: 1,
-    )
-  );
+    ));
 }
 
 .about-tool {
   h2 {
     margin-block-start: 200px;
+
+    @media screen and (width <=800px) {
+      margin-block-start: 50px;
+    }
+
+    @media screen and (width <=350px) {
+      margin-block-start: 20px;
+    }
+
     color: white;
     text-align: center;
+
     span {
       text-decoration: underline;
     }
@@ -293,5 +304,11 @@ h1 {
   p {
     text-align: center;
     color: white;
+  }
+}
+
+.anim-typewriter {
+  @media screen and (width <=350px) {
+    display: none;
   }
 }

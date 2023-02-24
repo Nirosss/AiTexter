@@ -20,6 +20,13 @@
   }
   .nav-btn.container{
     gap: 2rem;
+
+    @media screen and (width <= 350px) {
+      gap: 0.5rem;
+      > * {
+        font-size: 0.8rem;
+      }
+    }
   }
   .header-btn {
     all: unset;
