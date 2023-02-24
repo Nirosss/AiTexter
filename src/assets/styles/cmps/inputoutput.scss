@@ -80,7 +80,7 @@ h1 {
   justify-content: center;
   grid-template-columns: 100%;
   grid-template-rows: 250px 250px;
-
+  color: #222222;
   @media screen and (width <= 350px) {
     margin-block-start: 20px;
   }

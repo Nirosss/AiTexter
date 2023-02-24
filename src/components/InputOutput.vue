@@ -182,7 +182,7 @@ const options = [
         </section>
 
         <section class="about-tool">
-            <h2>AITexter is free tool powered by free services thats make your english <span>clear and precise</span>.</h2>
+            <h2>AITexter is a free tool powered by free services thats make your english <span>clear and precise</span>.</h2>
             <p>Would you like to contribute? For more information, please <a class="contact-us-action" href="https://www.linkedin.com/in/avishai-dotan">contact us.</a></p>
         </section>
     </main>
