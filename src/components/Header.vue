@@ -10,7 +10,7 @@
 <template>
   <header class="header-main full">
     <div class="flex space-between">
-      <h1>AITexter</h1>
+      <h1>AITexter<span style="font-size: 10px;">Beta</span></h1>
       <div class="nav-btn container flex">
         <button @click="toggleDark(), $emit('toggleDark')" class="header-btn">
           {{ buttonText }}
