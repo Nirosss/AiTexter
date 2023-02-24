@@ -55,7 +55,7 @@ function getTitle() {
 
 function setTypewriter(text: string, startIdx: number = 0) {
     output.value = text.substring(0, startIdx)
-    const timeout = Math.random() * 50;
+    const timeout = Math.random() * 50
     const interval = setInterval(() => {
         output.value += text.charAt(startIdx)
         startIdx++
@@ -71,7 +71,7 @@ function setTypewriter(text: string, startIdx: number = 0) {
 
 const options = [
     {
-        value: '    `',
+        value: 'grammar',
         label: 'Correct Grammar Only',
     },
     {
