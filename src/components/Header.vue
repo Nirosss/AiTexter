@@ -12,7 +12,7 @@
     <div class="flex space-between">
       <h1>AITexter</h1>
       <div class="nav-btn container flex">
-        <button @click="toggleDark() $emit('toggleDark')" class="header-btn">
+        <button @click="toggleDark(), $emit('toggleDark')" class="header-btn">
           {{ buttonText }}
         </button>
         <button @click="$emit('toggleAbout')" class="header-btn">About</button>
