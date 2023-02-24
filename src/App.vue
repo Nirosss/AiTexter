@@ -14,7 +14,7 @@
 </script>
 
 <template>
-  <div class="main-layout height-filler">
+  <div class="main-layout height-filler" :class="{ dark : isDarkClass }">
     <Header
       @toggleDark="toggleDarkClass()"
       @toggleAbout="toggleAbout"
