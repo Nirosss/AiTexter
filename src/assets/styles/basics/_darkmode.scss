@@ -1,7 +1,28 @@
 .main-layout {
   &.dark {
+    background-image: none;
     .height-filler {
+      background: unset;
       background-color: #343541;
+      color: #ececf1;
+    }
+    .input-output-header {
+      color: #ececf1;
+    }
+    .input-output-grid {
+      section {
+        background-color: #3e3f4b;
+        textarea {
+          background-color: #3e3f4b;
+          color: #ececf1;
+          &::-webkit-input-placeholder {
+            color: #ececf1;
+          }
+        }
+        button {
+          background-color: #ba6bd9;
+        }
+      }
     }
   }
 }
