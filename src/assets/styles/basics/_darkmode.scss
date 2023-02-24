@@ -12,9 +12,10 @@
     .input-output-grid {
       section {
         background-color: #3e3f4b;
+        color: #ececf1;
         textarea {
-          background-color: #3e3f4b;
           color: #ececf1;
+          background-color: #3e3f4b;
           &::-webkit-input-placeholder {
             color: #ececf1;
           }
