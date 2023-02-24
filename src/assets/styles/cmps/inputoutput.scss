@@ -279,3 +279,19 @@ h1 {
     )
   );
 }
+
+.about-tool {
+  h2 {
+    margin-block-start: 200px;
+    color: white;
+    text-align: center;
+    span {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    text-align: center;
+    color: white;
+  }
+}
