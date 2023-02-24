@@ -10,7 +10,7 @@
 </script>
 
 <template>
-  <div class="main-layout">
+  <div class="main-layout height-filler">
     <Header @toggleAbout="toggleAbout" class="main-layout" />
     <InputOutput />
     <AboutModal
