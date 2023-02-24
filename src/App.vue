@@ -14,7 +14,7 @@
 </script>
 
 <template>
-  <div class="main-layout">
+  <div class="main-layout height-filler">
     <Header
       @toggleDark="toggleDarkClass()"
       @toggleAbout="toggleAbout"

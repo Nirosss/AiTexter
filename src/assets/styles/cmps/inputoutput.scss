@@ -230,7 +230,7 @@ h1 {
   }
 
   @media screen and (width >=1920px) {
-    grid-template-columns: 10% 1fr 1fr 10%;
+    grid-template-columns: 20% 1fr 1fr 20%;
   }
 }
 
@@ -243,7 +243,7 @@ h1 {
 
 .word {
   padding: 0 0 0 3px;
-  background-color: #a855c8;
+  background-color: #213547;
   color: white;
 
   &::before {
