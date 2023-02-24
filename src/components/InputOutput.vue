@@ -47,6 +47,12 @@ function copyToClipboard() {
     return result
 }
 
+function getTitle() {
+    if (!userInput.value) return "You didn't type any text"
+    else if  (!formatType.value) return "You didn't select formatting type"
+    return "Click to convert"
+}
+
 function setTypewriter(text: string, startIdx: number = 0) {
     output.value = text.substring(0, startIdx)
     const timeout = Math.random() * 50;
@@ -104,7 +110,7 @@ const options = [
             <section class="user-input">
                 <textarea placeholder="Place your text here" v-model="userInput"></textarea>
 
-                <div class="user-input-actions">
+                <div class="user-input-actions" :title="getTitle()">
                     <el-select v-model="formatType" class="m-2" placeholder="Select" size="large">
                         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
                     </el-select>
