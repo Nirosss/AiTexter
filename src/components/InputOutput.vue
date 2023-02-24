@@ -17,10 +17,16 @@ const isRequestSended = reactive({
 async function sendFormattingRequest() {
     if (!(userInput.value && formatType.value)) return
     output.value = ''
-    console.log(formatType.value)
     isRequestSended.value = true
+    
+    //@ts-ignore
+    const BASE_URL = (process.env.NODE_ENV !== 'development')
+        ? '/translate'
+        : 'http://127.0.0.1:8080/translate';
+
+
     try {
-        const res = await axios.post('http://127.0.0.1:8080/translate', {
+        const res = await axios.post(BASE_URL, {
             text: userInput.value,
             to: formatType.value,
         })
@@ -28,7 +34,7 @@ async function sendFormattingRequest() {
         setTypewriter(res.data.translation)
     } catch (err) {
         console.log(err);
-    } 
+    }
 }
 
 function copyToClipboard() {
@@ -43,7 +49,7 @@ function copyToClipboard() {
 
 function setTypewriter(text: string, startIdx: number = 0) {
     output.value = text.substring(0, startIdx)
-    const timeout = Math.random() * 150;
+    const timeout = Math.random() * 50;
     const interval = setInterval(() => {
         output.value += text.charAt(startIdx)
         startIdx++
@@ -75,16 +81,16 @@ const options = [
         label: 'Persuasive',
     },
     {
-        value: 'Senior program developer',
-        label: 'As Senior Dev',
-    },
-    {
-        value: 'HR specialist',
-        label: 'As HR specialist',
-    },
-    {
         value: 'Corporate',
-        label: 'Like Corporation leader',
+        label: 'Like corporation leader',
+    },
+    {
+        value: 'Viral',
+        label: 'Like a viral post',
+    },
+    {
+        value: 'ChatGPT',
+        label: 'Just speak with ChatGPT',
     },
 ]
 </script>
