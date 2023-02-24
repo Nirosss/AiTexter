@@ -65,7 +65,7 @@ function setTypewriter(text: string, startIdx: number = 0) {
 
 const options = [
     {
-        value: 'grammar correct',
+        value: '    `',
         label: 'Correct Grammar Only',
     },
     {

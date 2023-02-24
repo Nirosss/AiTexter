@@ -18,7 +18,9 @@
   .logo-img:hover {
     filter: drop-shadow(0 0 2em #646cffaa);
   }
-
+  .nav-btn.container{
+    gap: 2rem;
+  }
   .header-btn {
     all: unset;
     color: rgba(255, 255, 255, 0.87);

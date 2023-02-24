@@ -4,14 +4,21 @@
   import InputOutput from './components/InputOutput.vue'
   import AboutModal from './components/AboutModal.vue'
   const showModal = ref(false)
+  const isDarkClass = ref(false)
   function toggleAbout() {
     showModal.value = !showModal.value
+  }
+  function toggleDarkClass() {
+    isDarkClass.value = !isDarkClass.value
   }
 </script>
 
 <template>
   <div class="main-layout height-filler">
-    <Header @toggleAbout="toggleAbout" class="main-layout" />
+    <Header
+      @toggleDark="toggleDarkClass()"
+      @toggleAbout="toggleAbout"
+      class="main-layout" />
     <InputOutput />
     <AboutModal
       v-if="showModal"
