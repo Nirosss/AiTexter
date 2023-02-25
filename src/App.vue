@@ -4,12 +4,18 @@
   import InputOutput from './components/InputOutput.vue'
   import AboutModal from './components/AboutModal.vue'
   const showModal = ref(false)
-  const isDarkClass = ref(false)
+
+  const isDark = localStorage.getItem("isDark")
+  const isDarkClass = ref(isDark === "false")
+ 
+
   function toggleAbout() {
     showModal.value = !showModal.value
   }
+  
   function toggleDarkClass() {
     isDarkClass.value = !isDarkClass.value
+    localStorage.setItem("isDark", isDarkClass.value + '')
   }
 </script>
 

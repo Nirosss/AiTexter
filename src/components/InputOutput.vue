@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import axios from 'axios'
+import { ElMessage } from 'element-plus'
 
 const count = ref(0)
 const userInput = ref('')
@@ -38,12 +39,15 @@ async function sendFormattingRequest() {
 }
 
 function copyToClipboard() {
+    if (!output.value) return
+
     var input = document.createElement('input')
     input.setAttribute('value', output.value)
     document.body.appendChild(input)
     input.select()
     var result = document.execCommand('copy')
     document.body.removeChild(input)
+    openMsg()
     return result
 }
 
@@ -67,6 +71,13 @@ function setTypewriter(text: string, startIdx: number = 0) {
             clearInterval(interval)
         }
     }, timeout)
+}
+
+const openMsg = () => {
+  ElMessage({
+    message: 'The text has been copied',
+    type: 'success',
+  })
 }
 
 const options = [
@@ -184,6 +195,7 @@ const options = [
         <section class="about-tool">
             <h2>AITexter is a free tool powered by free services thats make your english <span>clear and precise</span>.</h2>
             <p>Would you like to contribute? For more information, please <a class="contact-us-action" href="https://www.linkedin.com/in/avishai-dotan">contact us.</a></p>
+            <p>Have you found a 🐛? Add an issue <a class="contact-us-action" href="https://github.com/AvishaiDotan/AiTexter-frontend">here.</a></p>
         </section>
     </main>
 </template>
