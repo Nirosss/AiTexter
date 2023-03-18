@@ -2,17 +2,30 @@
   import { ref } from 'vue'
   const email = ref('')
   const password = ref('')
-  const emit = defineEmits(['toggleLogin'])
+  const emit = defineEmits(['toggleLogin', 'toggleSession'])
   const props = defineProps({
     isLoggedInUser: Boolean,
   })
 
-  function signIn() {
-    signup(email.value, password.value)
-    emit('toggleLogin')
+  async function signIn() {
+    try {
+      await login(email.value, password.value)
+      emit('toggleSession', true)
+      emit('toggleLogin')
+    } catch (err) {
+      console.log(err)
+    }
+    
   }
-  function logOut(){
-    logout()
+  async function logOut() {
+    try {
+      await logout()
+      emit('toggleSession', false)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      emit('toggleLogin')
+    }
   }
 </script>
 
