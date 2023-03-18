@@ -54,6 +54,7 @@
       v-if="showLoginModal"
       @toggleLogin="toggleModal('login'), checkLogIn "
       v-click-outside="toggleModal"
+      :isLoggedInUser="isLoggedIn.valueOf()"
       class="about-modal" />
   </div>
 </template>
