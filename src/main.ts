@@ -7,8 +7,7 @@ import {
     clickOutsideDirective,
   } from '../src/directives/index.js'
 
-
-import {login, signup, getCurrentSession, logout} from './Services/appwrite.service.js'
+import {login, signup, getCurrentSession, logout} from './Services/appwrite.service'
 
 //@ts-ignore
 window.login = login
