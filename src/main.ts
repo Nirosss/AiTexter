@@ -6,8 +6,6 @@ import {
     customOnDirective,
     clickOutsideDirective,
   } from '../src/directives/index.js'
-
-
 import {login, signup, getCurrentSession, logout} from './Services/appwrite.service.js'
 
 //@ts-ignore
