@@ -6,17 +6,8 @@ import {
     customOnDirective,
     clickOutsideDirective,
   } from '../src/directives/index.js'
+  
 
-import {login, signup, getCurrentSession, logout} from './Services/appwrite.service'
-
-//@ts-ignore
-window.login = login
-//@ts-ignore
-window.signup = signup
-//@ts-ignore
-window.getCurrentSession = getCurrentSession
-//@ts-ignore
-window.logout = logout
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'

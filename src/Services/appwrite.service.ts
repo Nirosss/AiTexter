@@ -4,7 +4,9 @@ const client = new Client();
 const account = new Account(client);
 
 //@ts-ignore
-client.setEndpoint(process.env.APPWRITE_ENDPOINT).setProject(process.env.APPWRITE_PROJECT)
+client
+    .setEndpoint(process.env.APPWRITE_ENDPOINT)
+    .setProject(process.env.APPWRITE_PROJECT)
 ;
 
 export async function signup(email: string, password: string): Promise<any> {

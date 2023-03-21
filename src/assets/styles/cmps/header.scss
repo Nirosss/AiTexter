@@ -1,9 +1,32 @@
+.aitexter-btn {
+  padding-inline: 20px;
+  padding-block: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  background-color: rgba(139, 10, 190, 0.3294117647);
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  transition: 0.4s;
+  box-shadow: 0 0 0px #a855c8;
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: #a855c8;
+    cursor: pointer;
+  }
+}
+
+
 .header-main {
   height: 60px;
   background-color: transparent;
   display: flex;
   /* box-shadow: 1px 3px 8px 5px rgba(180, 96, 214, 0.5294117647); */
-  
+
 
   div {
     display: flex;

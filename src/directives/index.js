@@ -26,11 +26,7 @@ export const clickOutsideDirective = {
         )
       ) {
         cb()
-        // console.log('outside')
       }
-      //  else {
-      //   console.log('inside')
-      // }
     }
     setTimeout(() => {
       document.addEventListener('click', el.clickOutside)
@@ -40,6 +36,7 @@ export const clickOutsideDirective = {
     document.removeEventListener('click', el.clickOutside)
   },
 }
+
 export const close = {
   mounted(el, { value }, x) {
     // console.log(x)
