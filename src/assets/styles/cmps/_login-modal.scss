@@ -36,6 +36,23 @@
 .el-form-item__label {
   width: min-content !important;
 }
+.logout-modal {
+  flex-direction: column;
+ align-items: center;
+  font-weight: 600;
+  button {
+    width: 60px;
+    padding-block: 10px;
+    margin-left: 15px;
+    border: 0;
+    background-color: #8b0abe54;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    transition: 0.4s;
+    box-shadow: 0 0 0px #a855c8;
+    background-color: #a855c8;
+    cursor: pointer;
 
 .el-form-item__content {
   display: flex;

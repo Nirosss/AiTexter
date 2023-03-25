@@ -33,15 +33,8 @@
     let currentSession = await getCurrentSession()
     isLoggedIn.value = currentSession ? currentSession.current : false
   })
-  async function checkLogIn() {
-    try {
-      let currentSession = await getCurrentSession()
-      isLoggedIn.value = true;
-    }
-    catch (ex: any) {
-      isLoggedIn.value = false;
-      throw ex;
-    }
+  function toggleSession(status: boolean) {
+    isLoggedIn.value = status
   }
 </script>
 
@@ -61,7 +54,8 @@
       class="about-modal" />
     <LoginModal
       v-if="showLoginModal"
-      @toggleLogin="toggleModal('login'), checkLogIn "
+      @toggleLogin="toggleModal('login')"
+      @toggleSession="toggleSession"
       v-click-outside="toggleModal"
       :isLoggedInUser="isLoggedIn.valueOf()"
       class="about-modal" />

@@ -1,51 +1,46 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { login, signup, getCurrentSession, logout } from '../Services/appwrite.service'
-import type { FormInstance, FormRules } from 'element-plus'
-const formSize = ref('default')
-const ruleFormRef = ref<FormInstance>()
-
-var isUserAlreadySignup = ref(true);
-
-const ruleForm = reactive({
-  email: "",
-  password: "",
-})
-
-function toggleLoginSignupState() {
-  isUserAlreadySignup.value = !isUserAlreadySignup.value
-}
-
-const rules = reactive<FormRules>({
-  email: [
-    { required: true, message: 'Please input your email address', trigger: 'blur' },
-    {
-      type: 'email',
-      message: 'Please input correct email address',
-      trigger: ['blur', 'change'],
+  import { ref } from 'vue'
+  // import { login , signup } from '../Services/appwrite.service.js'
+  const email = ref('')
+  const password = ref('')
+  const emit = defineEmits(['toggleLogin', 'toggleSession'])
+  const props = defineProps({
+    isLoggedInUser: Boolean,
+  })
+  const buttonText = ref('Submit')
+  const systemMessage = ref('')
+  const isSignup = ref(false)
+  const toggleSignup = () => {
+    isSignup.value = true
+    buttonText.value = 'Signup'
+    return isSignup.value
+  }
+  async function signIn() {
+    try {
+      if (!isSignup.value) {
+        await login(email.value, password.value)
+        emit('toggleSession', true)
+        emit('toggleLogin')
+      } else {
+        await signup(email.value, password.value)
+        emit('toggleSession', true)
+        emit('toggleLogin')
+      }
+    } catch (err) {
+      let msg = err + ''
+      systemMessage.value = msg.substring(msg.indexOf(':') + 2)
+      password.value = ''
     }
-
-  ],
-  password: [
-    {
-      required: true,
-      message: 'Please enter tour password',
-      trigger: 'blur',
-    },
-    { min: 8, max: 10, message: 'Length should be 8 to 10 letters', trigger: 'blur' },
-  ],
-})
-
-const emit = defineEmits(['toggleLogin'])
-const props = defineProps({
-  isLoggedInUser: Boolean,
-})
-
-async function signIn() {
-  try {
-    !isUserAlreadySignup ? await login(ruleForm.email, ruleForm.password) : await signup(ruleForm.email, ruleForm.password)
-  } catch (ex: any) {
-    console.log(ex)
+  }
+  async function logOut() {
+    try {
+      await logout()
+      emit('toggleSession', false)
+    } catch (err) {
+      console.log(err)
+    } finally {
+      emit('toggleLogin')
+    }
   }
 }
 function logOut() {
