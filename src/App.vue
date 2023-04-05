@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, reactive } from 'vue'
   import Header from '../src/components/Header.vue'
   import InputOutput from './components/InputOutput.vue'
   import AboutModal from './components/AboutModal.vue'
@@ -25,6 +25,19 @@
       await checkLogIn()
     }
   }
+
+  function useForceUpdate() {
+  const state = reactive({
+    value: 0,
+  });
+
+  function forceUpdate() {
+    state.value++;
+  }
+
+  return forceUpdate;
+}
+
   function toggleDarkClass() {
     isDarkClass.value = !isDarkClass.value
     localStorage.setItem('isDark', isDarkClass.value + '')
@@ -61,7 +74,8 @@
       class="about-modal" />
     <LoginModal
       v-if="showLoginModal"
-      @toggleLogin="toggleModal('login'), checkLogIn "
+      @toggleLogin="toggleModal('login'), checkLogIn()"
+      @useForceUpdate="useForceUpdate()"
       v-click-outside="toggleModal"
       :isLoggedInUser="isLoggedIn.valueOf()"
       class="about-modal" />

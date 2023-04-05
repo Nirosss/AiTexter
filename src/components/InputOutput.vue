@@ -1,7 +1,43 @@
+
+
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+
+import { ref, reactive, onBeforeMount, onMounted } from 'vue'
 import axios from 'axios'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { getCurrentSession } from '../Services/appwrite.service'
+
+onMounted(() => {
+    enrichedUser()
+})
+
+const power = ref(0)
+
+const enrichedUser = async () => {
+    try {
+        const user = await getCurrentSession();
+        console.log("hey")
+        if (user) {
+            options = [
+                ...options,
+                {
+                    value: 'Teacher',
+                    label: 'Like a Teacher ✨',
+                },
+                {
+                    value: '60',
+                    label: 'Like the 60\'s ✨',
+                },
+                {
+                    value: 'Interviewer',
+                    label: 'Like a Interviewer ✨',
+                }]
+        }
+    }
+    catch (err) {
+        throw err;
+    }
+}
 
 const count = ref(0)
 const userInput = ref('')
@@ -19,7 +55,7 @@ async function sendFormattingRequest() {
     if (!(userInput.value && formatType.value)) return
     output.value = ''
     isRequestSended.value = true
-    
+
     //@ts-ignore
     const BASE_URL = (process.env.NODE_ENV !== 'development')
         ? '/translate'
@@ -53,7 +89,7 @@ function copyToClipboard() {
 
 function getTitle() {
     if (!userInput.value) return "You didn't type any text"
-    else if  (!formatType.value) return "You didn't select formatting type"
+    else if (!formatType.value) return "You didn't select formatting type"
     return "Click to convert"
 }
 
@@ -74,13 +110,13 @@ function setTypewriter(text: string, startIdx: number = 0) {
 }
 
 const openMsg = () => {
-  ElMessage({
-    message: 'The text has been copied',
-    type: 'success',
-  })
+    ElMessage({
+        message: 'The text has been copied',
+        type: 'success',
+    })
 }
 
-const options = [
+var options = [
     {
         value: 'grammar',
         label: 'Correct Grammar Only',
@@ -117,14 +153,17 @@ const options = [
         <h2 class="input-output-header anim-typewriter">
             Let's makes your text <span class="word"></span>!
         </h2>
-        <section class="input-output-grid">
-            <section class="user-input">
-                <textarea placeholder="Place your text here" v-model="userInput"></textarea>
 
+        <section class="input-output-grid" style="position: relative;">
+            <section class="user-input">
+
+                <textarea placeholder="Place your text here" v-model="userInput"></textarea>
                 <div class="user-input-actions" :title="getTitle()">
+
                     <el-select v-model="formatType" class="m-2" placeholder="Select" size="large">
                         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
                     </el-select>
+
                     <button :class="{ isActive: userInput && formatType }" @click="sendFormattingRequest">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-magic" viewBox="0 0 16 16">
@@ -193,9 +232,12 @@ const options = [
         </section>
 
         <section class="about-tool">
-            <h2>AITexter is a free tool powered by free services thats make your english <span>clear and precise</span>.</h2>
-            <p>Would you like to contribute? For more information, please <a class="contact-us-action" href="https://www.linkedin.com/in/avishai-dotan">contact us.</a></p>
-            <p>Have you found a 🐛? Add an issue <a class="contact-us-action" href="https://github.com/AvishaiDotan/AiTexter-frontend">here.</a></p>
+            <h2>AITexter is a free tool powered by free services thats make your english <span>clear and precise</span>.
+            </h2>
+            <p>Would you like to contribute? For more information, please <a class="contact-us-action"
+                    href="https://www.linkedin.com/in/avishai-dotan">contact us.</a></p>
+            <p>Have you found a 🐛? Add an issue <a class="contact-us-action"
+                    href="https://github.com/AvishaiDotan/AiTexter-frontend">here.</a></p>
         </section>
     </main>
 </template>

@@ -36,20 +36,29 @@ const rules = reactive<FormRules>({
   ],
 })
 
-const emit = defineEmits(['toggleLogin'])
+const emit = defineEmits(['toggleLogin', "useForceUpdate"])
 const props = defineProps({
   isLoggedInUser: Boolean,
 })
 
 async function signIn() {
   try {
-    !isUserAlreadySignup ? await login(ruleForm.email, ruleForm.password) : await signup(ruleForm.email, ruleForm.password)
+    console.log("hasfkjaskvlalv")
+    !isUserAlreadySignup.value ? await login(ruleForm.email, ruleForm.password) : await signup(ruleForm.email, ruleForm.password)
+    emit('toggleLogin');
+    emit("useForceUpdate");
   } catch (ex: any) {
     console.log(ex)
   }
 }
-function logOut() {
-  logout()
+async function logOut() {
+  try {
+    await logout()
+    emit("useForceUpdate")
+  }
+  catch (err) {
+    throw err;
+  }
 }
 
 const submitForm = async (formEl: FormInstance | undefined) => {
@@ -57,7 +66,6 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       signIn();
-      emit('toggleLogin')
     } else {
       console.log('error submit!', fields)
     }

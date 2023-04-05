@@ -3,7 +3,7 @@ import { Client, Account, ID } from "appwrite";
 const client = new Client();
 const account = new Account(client);
 
-//@ts-ignore
+// @ts-ignore
 client
     .setEndpoint(process.env.APPWRITE_ENDPOINT)
     .setProject(process.env.APPWRITE_PROJECT)
