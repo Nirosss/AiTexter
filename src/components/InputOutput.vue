@@ -2,6 +2,7 @@
 import { ref, reactive } from 'vue'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import { ArrowDown } from '@element-plus/icons-vue'
 
 const count = ref(0)
 const userInput = ref('')
@@ -9,6 +10,9 @@ const outputString = ref(null)
 const formatType = ref('')
 const output = reactive({
     value: '',
+})
+const outputList = reactive({
+    value: [],
 })
 
 const isRequestSended = reactive({
@@ -32,17 +36,19 @@ async function sendFormattingRequest() {
             to: formatType.value,
         })
         isRequestSended.value = false
-        setTypewriter(res.data.translation)
+        setTypewriter(res.data.translation[0])
+        outputList.value = res.data.translation
     } catch (err) {
         console.log(err);
     }
 }
 
-function copyToClipboard() {
+function copyToClipboard(specVal: string) {
     if (!output.value) return
+    var valToCopy = (specVal) ? specVal : output.value;
 
     var input = document.createElement('input')
-    input.setAttribute('value', output.value)
+    input.setAttribute('value', valToCopy)
     document.body.appendChild(input)
     input.select()
     var result = document.execCommand('copy')
@@ -108,6 +114,26 @@ const options = [
     {
         value: 'ChatGPT',
         label: 'Just speak with ChatGPT',
+    },
+    {
+        value: 'Teacher',
+        label: 'Like a Teacher',
+    },
+    {
+        value: '60',
+        label: 'Like the 60\'s',
+    },
+    {
+        value: 'Interviewer',
+        label: 'Like an Interviewer',
+    },
+    {
+        value: 'Costumers',
+        label: 'Like u speak to customers',
+    },
+    {
+        value: 'Documentation',
+        label: 'Like an Documentation of API or web service',
     },
 ]
 </script>
@@ -178,7 +204,17 @@ const options = [
                 </div>
 
                 <div class="ai-output-actions">
-                    <button :class="{ isActive: output.value }" @click="copyToClipboard">
+                    <el-dropdown trigger="click" :disabled="!outputList.value.length">
+                        <el-button type="primary" :class="{ isActive: output.value }">
+                            Variation's List<el-icon class="el-icon--right isActive" ><arrow-down /></el-icon>
+                        </el-button>
+                        <template #dropdown>
+                            <el-dropdown-menu>
+                                <el-dropdown-item @click="() => copyToClipboard(variation)" v-for="variation in outputList.value">{{variation}}</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </template>
+                    </el-dropdown>
+                    <button :class="{ isActive: output.value }" @click="() => copyToClipboard("")">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-clipboard" viewBox="0 0 16 16">
                             <path
@@ -199,4 +235,14 @@ const options = [
         </section>
     </main>
 </template>
+
+<style>
+.el-button.el-button--primary.el-tooltip__trigger {
+    height: 100%;
+}
+
+.ai-output-actions {
+    gap: 10px;
+}
+</style>
 
