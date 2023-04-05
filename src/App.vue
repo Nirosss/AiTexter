@@ -3,6 +3,7 @@
   import Header from '../src/components/Header.vue'
   import InputOutput from './components/InputOutput.vue'
   import AboutModal from './components/AboutModal.vue'
+<<<<<<< HEAD
   import LoginModal from './components/LoginModal.vue'
 
   import {login, signup, getCurrentSession, logout} from './Services/appwrite.service'
@@ -55,6 +56,15 @@
       isLoggedIn.value = false;
       throw ex;
     }
+=======
+  const showModal = ref(false)
+  const isDarkClass = ref(false)
+  function toggleAbout() {
+    showModal.value = !showModal.value
+  }
+  function toggleDarkClass() {
+    isDarkClass.value = !isDarkClass.value
+>>>>>>> parent of d1c7605 (add user msg, fix about, add bug report)
   }
 </script>
 
