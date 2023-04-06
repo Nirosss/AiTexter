@@ -12,7 +12,7 @@ const output = reactive({
     value: '',
 })
 const outputList = reactive({
-    value: [],
+    value: ["string"],
 })
 
 const isRequestSended = reactive({
@@ -43,9 +43,9 @@ async function sendFormattingRequest() {
     }
 }
 
-function copyToClipboard(specVal: string) {
+function copyToClipboard(specVal: string = "") {
     if (!output.value) return
-    var valToCopy = (specVal) ? specVal : output.value;
+    var valToCopy = (specVal) ? specVal : output.value
 
     var input = document.createElement('input')
     input.setAttribute('value', valToCopy)
@@ -214,7 +214,7 @@ const options = [
                             </el-dropdown-menu>
                         </template>
                     </el-dropdown>
-                    <button :class="{ isActive: output.value }" @click="() => copyToClipboard("")">
+                    <button :class="{ isActive: output.value }" @click="() => copyToClipboard()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-clipboard" viewBox="0 0 16 16">
                             <path
