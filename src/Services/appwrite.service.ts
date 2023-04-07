@@ -5,8 +5,8 @@ const account = new Account(client);
 
 //@ts-ignore
 client
-    .setEndpoint(process.env.APPWRITE_ENDPOINT)
-    .setProject(process.env.APPWRITE_PROJECT)
+    .setEndpoint('https://cloud.appwrite.io/v1')
+    .setProject('640ae16a74b3b2670918')
 ;
 
 export async function signup(email: string, password: string): Promise<any> {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, getCurrentInstance  } from 'vue'
   import Header from '../src/components/Header.vue'
   import InputOutput from './components/InputOutput.vue'
   import AboutModal from './components/AboutModal.vue'
@@ -22,9 +22,10 @@
     } else {
       showLoginModal.value = !showLoginModal.value
       currentOpenModal.value = 'login'
-      await checkLogIn()
     }
+
   }
+
   function toggleDarkClass() {
     isDarkClass.value = !isDarkClass.value
     localStorage.setItem('isDark', isDarkClass.value + '')
@@ -33,9 +34,19 @@
     let currentSession = await getCurrentSession()
     isLoggedIn.value = currentSession ? currentSession.current : false
   })
-  function toggleSession(status: boolean) {
-    isLoggedIn.value = status
+  async function toggleSession() { 
+    console.log("HEY");
+    
+    try {
+      let currentSession = await getCurrentSession()
+      isLoggedIn.value = currentSession ? currentSession.current : false
+    } 
+    catch (err: any) {
+      isLoggedIn.value = false;
+    }    
   }
+
+
 </script>
 
 <template>
@@ -55,7 +66,7 @@
     <LoginModal
       v-if="showLoginModal"
       @toggleLogin="toggleModal('login')"
-      @toggleSession="toggleSession"
+      @toggleSession="(status: boolean) => toggleSession(status)"
       v-click-outside="toggleModal"
       :isLoggedInUser="isLoggedIn.valueOf()"
       class="about-modal" />
