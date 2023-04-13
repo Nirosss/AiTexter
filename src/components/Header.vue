@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, reactive, computed  } from 'vue'
+  import { ref, defineProps ,computed  } from 'vue'
 
   let isDark: boolean = false
   const buttonText = ref('Dark Mode')
@@ -8,12 +8,10 @@
     buttonText.value = isDark ? 'Light Mode' : 'Dark Mode'
   }
   const props = defineProps({
-    isLoggedInUser : Boolean
+    isLoggedIn : Boolean
   }
   )
-    const loginButtonText = computed(() => {
-    return props.isLoggedInUser  ? 'Log out' : 'Log in'
-  })
+  
 </script>
 <template>
   <header class="header-main full">
@@ -21,7 +19,7 @@
       <h1>AITexter<span style="font-size: 10px">Beta</span></h1>
       <div class="nav-btn container flex">
         <button @click=" $emit('toggleLogin')" class="header-btn">
-          {{ loginButtonText }}
+          {{ isLoggedIn ? 'Log out' : 'Log in' }}
         </button>
         <button @click="toggleDark(), $emit('toggleDark')" class="header-btn">
           {{ buttonText }}

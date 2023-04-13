@@ -1,11 +1,16 @@
 <script setup lang="ts">
-  import { ref, onMounted, getCurrentInstance  } from 'vue'
+  import { ref, onMounted, getCurrentInstance } from 'vue'
   import Header from '../src/components/Header.vue'
   import InputOutput from './components/InputOutput.vue'
   import AboutModal from './components/AboutModal.vue'
   import LoginModal from './components/LoginModal.vue'
 
-  import {login, signup, getCurrentSession, logout} from './Services/appwrite.service'
+  import {
+    login,
+    signup,
+    getCurrentSession,
+    logout,
+  } from './Services/appwrite.service'
 
   const showAboutModal = ref(false)
   const showLoginModal = ref(false)
@@ -23,9 +28,7 @@
       showLoginModal.value = !showLoginModal.value
       currentOpenModal.value = 'login'
     }
-
   }
-
   function toggleDarkClass() {
     isDarkClass.value = !isDarkClass.value
     localStorage.setItem('isDark', isDarkClass.value + '')
@@ -34,19 +37,16 @@
     let currentSession = await getCurrentSession()
     isLoggedIn.value = currentSession ? currentSession.current : false
   })
-  async function toggleSession() { 
-    console.log("HEY");
-    
+
+  async function toggleSession() {
+    console.log('yay')
     try {
       let currentSession = await getCurrentSession()
       isLoggedIn.value = currentSession ? currentSession.current : false
-    } 
-    catch (err: any) {
-      isLoggedIn.value = false;
-    }    
+    } catch (err: any) {
+      isLoggedIn.value = false
+    }
   }
-
-
 </script>
 
 <template>
@@ -55,7 +55,7 @@
       @toggleDark="toggleDarkClass()"
       @toggleAbout="toggleModal('about')"
       @toggleLogin="toggleModal('login')"
-      :isLoggedInUser="isLoggedIn.valueOf()"
+      :isLoggedIn="isLoggedIn"
       class="main-layout" />
     <InputOutput />
     <AboutModal
@@ -65,8 +65,8 @@
       class="about-modal" />
     <LoginModal
       v-if="showLoginModal"
+      @toggleSession="toggleSession()"
       @toggleLogin="toggleModal('login')"
-      @toggleSession="(status: boolean) => toggleSession(status)"
       v-click-outside="toggleModal"
       :isLoggedInUser="isLoggedIn.valueOf()"
       class="about-modal" />
