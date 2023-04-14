@@ -38,15 +38,31 @@
     isLoggedIn.value = currentSession ? currentSession.current : false
   })
 
+  // async function toggleSession() {
+  //   console.log('yay')
+  //   try {
+  //     let currentSession = await getCurrentSession()
+  //     isLoggedIn.value = currentSession ? currentSession.current : false
+  //   } catch (err: any) {
+  //     isLoggedIn.value = false
+  //   }
+  //   finally{
+  //     console.log(isLoggedIn.value)
+  //   }
+  // }
   async function toggleSession() {
-    console.log('yay')
+  console.log('yay');
+  setTimeout(async () => {
     try {
-      let currentSession = await getCurrentSession()
+      let currentSession = await getCurrentSession();
       isLoggedIn.value = currentSession ? currentSession.current : false
+       console.log( currentSession.current)
     } catch (err: any) {
-      isLoggedIn.value = false
-    }
-  }
+      console.log(err)
+      isLoggedIn.value = false;
+    } 
+  }, 1500)
+}
 </script>
 
 <template>
