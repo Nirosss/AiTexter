@@ -23,7 +23,7 @@ $__typed-pauses-chars: (
     $fwd-length: str-length($fwd-string);
     $bwd-string: __typed-remove-fwd-pause-chars($string);
     $bwd-length: str-length($bwd-string);
-    $combined-length: $fwd-length +$bwd-length;
+    $combined-length: $fwd-length + $bwd-length;
     $strings-past: $string-nth - 1;
     $time: 0;
 
@@ -32,16 +32,16 @@ $__typed-pauses-chars: (
         $past-length: str-length($past-string);
         $past-fwd-length: str-length(__typed-remove-bwd-pause-chars($past-string));
         $past-bwd-length: str-length(__typed-remove-fwd-pause-chars($past-string));
-        $time: $time +$dur-char-fwd * $past-fwd-length +$dur-char-bwd * $past-bwd-length +$dur-full-gap +$dur-done-gap;
+        $time: $time + $dur-char-fwd * $past-fwd-length + $dur-char-bwd * $past-bwd-length + $dur-full-gap + $dur-done-gap;
         $strings-past: $strings-past - 1;
     }
 
     @if $char-nth <=$fwd-length {
-        $time: $time +$dur-char-fwd * ($char-nth - 1);
+        $time: $time + $dur-char-fwd * ($char-nth - 1);
     }
 
     @else {
-        $time: $time +$dur-char-fwd * $fwd-length +$dur-full-gap +$dur-char-bwd * ($char-nth - $fwd-length);
+        $time: $time + $dur-char-fwd * $fwd-length + $dur-full-gap + $dur-char-bwd * ($char-nth - $fwd-length);
     }
 
     @return (__div($time, $dur-total) * 100 + $modifier)+"%";
@@ -143,7 +143,7 @@ $__typed-pauses-chars: (
     @if type-of($data)==list or type-of($data)==map {
         @each $item in $data {
             @if $item ==$search {
-                $instances: $instances +1;
+                $instances: $instances + 1;
             }
         }
     }
@@ -159,7 +159,7 @@ $__typed-pauses-chars: (
 
         @for $i from 1 through str-length($data) - str-length($search)+1 {
             @if str-slice($data, $i, $i + str-length($search) - 1)==$search {
-                $instances: $instances +1;
+                $instances: $instances + 1;
             }
         }
     }
@@ -192,7 +192,7 @@ $__typed-pauses-chars: (
     $index: str-index($string, $search);
 
     @if $index {
-        @return str-slice($string, 1, $index - 1)+$replace +__typed-str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+        @return str-slice($string, 1, $index - 1)+ $replace + __typed-str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
     }
 
     @return $string;
@@ -250,7 +250,7 @@ $__typed-pauses-chars: (
 
     @else {
         $digits: $digits * 10;
-        $result: $result +__div(map-get($numbers, $character), $digits);
+        $result: $result + __div(map-get($numbers, $character), $digits);
     }
 }
 
@@ -306,7 +306,7 @@ $__typed-pauses-chars: (
         $spaces: "";
 
         @for $i from 0 to $value {
-            $spaces: $spaces +$space-char;
+            $spaces: $spaces + $space-char;
         }
 
         $str: str-slice($str, 1, $start - 1) + $spaces + str-slice($str, $end + 2, -1);
@@ -559,7 +559,7 @@ $__typed-id: 0;
 
     @else {
         $animation-name: typed-#{$__typed-id};
-        $__typed-id: $__typed-id +1 !global;
+        $__typed-id: $__typed-id + 1 !global;
     }
 
     $dur-total: 0;
@@ -567,7 +567,7 @@ $__typed-id: 0;
     @each $string in $strings {
         $fwd-length: str-length(__typed-remove-bwd-pause-chars($string));
         $bwd-length: str-length(__typed-remove-fwd-pause-chars($string));
-        $dur-total: $dur-total +$dur-char-fwd * $fwd-length +$dur-full-gap +$dur-char-bwd * $bwd-length +$dur-done-gap
+        $dur-total: $dur-total + $dur-char-fwd * $fwd-length + $dur-full-gap + $dur-char-bwd * $bwd-length + $dur-done-gap
     }
 
     &::before {
@@ -606,7 +606,7 @@ $__typed-id: 0;
             $fwd-length: str-length($fwd-string);
             $bwd-string: __typed-remove-fwd-pause-chars($string);
             $bwd-length: str-length($bwd-string);
-            $combined-length: $fwd-length +$bwd-length;
+            $combined-length: $fwd-length + $bwd-length;
 
             @for $j from 1 through $combined-length {
                 @if $j < $combined-length {

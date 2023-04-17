@@ -5,7 +5,7 @@ const account = new Account(client)
 
 client
   .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
-  .setProject('640ae16a74b3b2670918') // Your project ID
+  .setProject('') // Your project ID
 
 export async function signup(email, password) {
   try {

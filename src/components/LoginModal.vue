@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, reactive, defineProps } from 'vue'
+  import { ref, reactive } from 'vue'
   import {
     login,
     signup,
