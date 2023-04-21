@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, defineProps ,computed  } from 'vue'
+  import { ref } from 'vue'
 
   let isDark: boolean = false
   const buttonText = ref('Dark Mode')

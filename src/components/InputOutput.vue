@@ -326,7 +326,7 @@
 
         <div class="ai-output-actions">
           <el-dropdown trigger="click" :disabled="outputList.value.length <= 1">
-            <el-button
+            <el-button  title="Click to see if we have alternative suggestions"
               type="primary"
               :class="{
                 isActive: output.value && outputList.value.length > 1,
@@ -375,7 +375,7 @@
         Would you like to contribute? For more information, please
         <a
           class="contact-us-action"
-          href="https://www.linkedin.com/in/avishai-dotan"
+          href="https://www.linkedin.com/in/nir-roiter"
           >contact us.</a
         >
       </p>

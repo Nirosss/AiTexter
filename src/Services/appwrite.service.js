@@ -8,9 +8,8 @@ const account = new Account(client)
 //   .setProject(process.env.VUE_APP_APPWRITE_PROJECT) // Your project ID
 
 client
-    .setEndpoint('https://cloud.appwrite.io/v1')
-    .setProject('640ae16a74b3b2670918')
-;
+  .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
+  .setProject('Avishai Dotan') // Your project ID
 
 export async function signup(email, password) {
   try {
