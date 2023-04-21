@@ -327,7 +327,7 @@
 
         <div class="ai-output-actions">
           <el-dropdown trigger="click" :disabled="outputList.value.length <= 1">
-            <el-button
+            <el-button  title="Click to see if we have alternative suggestions"
               type="primary"
               :class="{
                 isActive: output.value && outputList.value.length > 1,
@@ -376,7 +376,7 @@
         Would you like to contribute? For more information, please
         <a
           class="contact-us-action"
-          href="https://www.linkedin.com/in/avishai-dotan"
+          href="https://www.linkedin.com/in/nir-roiter"
           >contact us.</a
         >
       </p>
@@ -386,18 +386,6 @@
           class="contact-us-action"
           href="https://github.com/AvishaiDotan/AiTexter-frontend"
           >here.</a
-        >
-      </p>
-      <h2>
-        AITexter is a free tool powered by free services thats make your english
-        <span>clear and precise</span>.
-      </h2>
-      <p>
-        Would you like to contribute? For more information, please
-        <a
-          class="contact-us-action"
-          href="https://www.linkedin.com/in/avishai-dotan"
-          >contact us.</a
         >
       </p>
     </section>

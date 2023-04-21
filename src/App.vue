@@ -51,7 +51,6 @@
   //   }
   // }
   async function toggleSession() {
-  console.log('yay');
   setTimeout(async () => {
     try {
       let currentSession = await getCurrentSession();
