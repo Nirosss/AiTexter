@@ -51,11 +51,13 @@
   //   }
   // }
   async function toggleSession() {
+    
   setTimeout(async () => {
+    isLoggedIn.value = !isLoggedIn.value
+    return;
     try {
       let currentSession = await getCurrentSession();
       isLoggedIn.value = currentSession ? currentSession.current : false
-       console.log( currentSession.current)
     } catch (err: any) {
       console.log(err)
       isLoggedIn.value = false;

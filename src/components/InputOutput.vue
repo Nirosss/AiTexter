@@ -170,9 +170,16 @@
     <section class="input-output-grid" style="position: relative">
       <section class="user-input">
         <textarea
-          placeholder="Place your text here"
+          placeholder="Place Text Here"
           v-model="userInput"></textarea>
         <div class="user-input-actions" :title="getTitle()">
+          <el-tooltip
+            class="box-item"
+            effect="light"
+            content="Transformation Type"
+            placement="bottom"
+           >
+          
           <el-select
             v-model="formatType"
             class="m-2"
@@ -184,6 +191,13 @@
               :label="item.label"
               :value="item.value" />
           </el-select>
+        </el-tooltip>
+        <el-tooltip
+            class="box-item"
+            effect="light"
+            content="Press Here To ReWrite"
+            placement="bottom"
+           >
           <button
             :class="{ isActive: userInput && formatType }"
             @click="sendFormattingRequest">
@@ -199,6 +213,7 @@
             </svg>
             ReWrite
           </button>
+        </el-tooltip>
         </div>
       </section>
       <section class="ai-output">
@@ -327,6 +342,12 @@
 
         <div class="ai-output-actions">
           <el-dropdown trigger="click" :disabled="outputList.value.length <= 1">
+            <el-tooltip
+            class="box-item"
+            effect="light"
+            content="Variation's List"
+            placement="bottom"
+           >
             <el-button  title="Click to see if we have alternative suggestions"
               type="primary"
               :class="{
@@ -336,6 +357,7 @@
                 ><arrow-down
               /></el-icon>
             </el-button>
+          </el-tooltip>
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item
@@ -346,6 +368,12 @@
               </el-dropdown-menu>
             </template>
           </el-dropdown>
+          <el-tooltip
+            class="box-item"
+            effect="light"
+            content="Copy!"
+            placement="bottom"
+           >
           <button
             :class="{ isActive: output.value }"
             @click="() => copyToClipboard()">
@@ -363,6 +391,7 @@
             </svg>
             Copy
           </button>
+          </el-tooltip>
         </div>
       </section>
     </section>
