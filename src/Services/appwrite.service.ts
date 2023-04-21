@@ -4,6 +4,8 @@ const client = new Client();
 const account = new Account(client);
 
 //@ts-ignore
+// client.setEndpoint(process.env.VUE_APP_APPWRITE_ENDPOINT).setProject(process.env.VUE_APP_APPWRITE_PROJECT) // Your project ID
+
 client
     .setEndpoint('https://cloud.appwrite.io/v1')
     .setProject('640ae16a74b3b2670918')

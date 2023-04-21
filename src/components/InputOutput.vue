@@ -73,8 +73,7 @@
     isRequestSended.value = true
 
     //@ts-ignore
-    const BASE_URL =
-      process.env.NODE_ENV !== 'development'
+    const BASE_URL = process.env.NODE_ENV !== 'development'
         ? '/translate'
         : 'http://127.0.0.1:8080/translate'
 

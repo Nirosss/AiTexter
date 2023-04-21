@@ -3,9 +3,14 @@ import { Client, Account, ID } from 'appwrite'
 const client = new Client()
 const account = new Account(client)
 
+// client
+//   .setEndpoint(process.env.VUE_APP_APPWRITE_ENDPOINT) // Your API Endpoint
+//   .setProject(process.env.VUE_APP_APPWRITE_PROJECT) // Your project ID
+
 client
-  .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
-  .setProject('640ae16a74b3b2670918') // Your project ID
+    .setEndpoint('https://cloud.appwrite.io/v1')
+    .setProject('640ae16a74b3b2670918')
+;
 
 export async function signup(email, password) {
   try {

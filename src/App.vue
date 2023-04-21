@@ -4,7 +4,7 @@
   import InputOutput from './components/InputOutput.vue'
   import AboutModal from './components/AboutModal.vue'
   import LoginModal from './components/LoginModal.vue'
-
+  import dotenv from 'dotenv'
   import {
     login,
     signup,
@@ -12,6 +12,7 @@
     logout,
   } from './Services/appwrite.service'
 
+  dotenv.config()
   const showAboutModal = ref(false)
   const showLoginModal = ref(false)
   const isDark = localStorage.getItem('isDark')
