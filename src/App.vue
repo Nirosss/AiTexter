@@ -3,14 +3,7 @@
   import Header from '../src/components/Header.vue'
   import InputOutput from './components/InputOutput.vue'
   import AboutModal from './components/AboutModal.vue'
-  import LoginModal from './components/LoginModal.vue'
-
-  import {
-    login,
-    signup,
-    getCurrentSession,
-    logout,
-  } from './Services/appwrite.service'
+  
 
   const showAboutModal = ref(false)
   const showLoginModal = ref(false)
@@ -33,35 +26,6 @@
     isDarkClass.value = !isDarkClass.value
     localStorage.setItem('isDark', isDarkClass.value + '')
   }
-  onMounted(async () => {
-    let currentSession = await getCurrentSession()
-    isLoggedIn.value = currentSession ? currentSession.current : false
-  })
-
-  // async function toggleSession() {
-  //   console.log('yay')
-  //   try {
-  //     let currentSession = await getCurrentSession()
-  //     isLoggedIn.value = currentSession ? currentSession.current : false
-  //   } catch (err: any) {
-  //     isLoggedIn.value = false
-  //   }
-  //   finally{
-  //     console.log(isLoggedIn.value)
-  //   }
-  // }
-  async function toggleSession() {
-  setTimeout(async () => {
-    try {
-      let currentSession = await getCurrentSession();
-      isLoggedIn.value = currentSession ? currentSession.current : false
-       console.log( currentSession.current)
-    } catch (err: any) {
-      console.log(err)
-      isLoggedIn.value = false;
-    } 
-  }, 1500)
-}
 </script>
 
 <template>
@@ -78,15 +42,9 @@
       @toggleAbout="toggleModal('about')"
       v-click-outside="toggleModal"
       class="about-modal" />
-    <LoginModal
-      v-if="showLoginModal"
-      @toggleSession="toggleSession()"
-      @toggleLogin="toggleModal('login')"
-      v-click-outside="toggleModal"
-      :isLoggedInUser="isLoggedIn.valueOf()"
-      class="about-modal" />
   </div>
 </template>
 
 <!-- v-click-outside="toggleModal('login')" -->
 <!-- v-click-outside="toggleModal('about')" -->
+

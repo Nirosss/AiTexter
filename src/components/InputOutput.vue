@@ -2,7 +2,6 @@
   import { ref, reactive, onBeforeMount, onMounted } from 'vue'
   import axios from 'axios'
   import { ElMessage, ElMessageBox } from 'element-plus'
-  import { getCurrentSession } from '../Services/appwrite.service'
   import { ArrowDown } from '@element-plus/icons-vue'
 
   onMounted(() => {
