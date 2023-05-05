@@ -10,6 +10,7 @@
   const props = defineProps({
     isLoggedIn: Boolean,
   })
+
 </script>
 <template>
   <header class="header-main full">
@@ -22,8 +23,30 @@
         <button @click="toggleDark(), $emit('toggleDark')" class="header-btn">
           {{ buttonText }}
         </button>
+        <button @click="$emit('toggleDrawer')" class="header-btn">
+          History
+        </button>
         <button @click="$emit('toggleAbout')" class="header-btn">About</button>
       </div>
     </div>
   </header>
+
 </template>
+
+<style>
+.el-drawer__body {
+  background-color: #27272f;
+  display: flex;
+    flex-direction: column;
+    display: flex;
+    gap: 10px;
+}
+
+.history-string {
+  background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0;
+    gap: 20px;
+}
+</style>

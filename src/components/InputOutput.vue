@@ -3,6 +3,7 @@
   import axios from 'axios'
   import { ElMessage, ElMessageBox } from 'element-plus'
   import { ArrowDown } from '@element-plus/icons-vue'
+  import { saveString } from '../services/history.service'
 
   const handleClose = (done: () => void) => {
   ElMessageBox.confirm('Are you sure to close this dialog?')
@@ -121,6 +122,7 @@
     var result = document.execCommand('copy')
     document.body.removeChild(input)
     openMsg()
+    saveString(valToCopy)
     return result
   }
 
@@ -176,7 +178,7 @@
     },
     {
       value: 'hr',
-      label: 'An HR representative talking to an employee',
+      label: 'As an HR representative talking to an employee',
     }
   ]
 </script>
