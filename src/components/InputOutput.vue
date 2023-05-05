@@ -4,6 +4,16 @@
   import { ElMessage, ElMessageBox } from 'element-plus'
   import { ArrowDown } from '@element-plus/icons-vue'
 
+  const handleClose = (done: () => void) => {
+  ElMessageBox.confirm('Are you sure to close this dialog?')
+    .then(() => {
+      done()
+    })
+    .catch(() => {
+      // catch error
+    })
+}
+
   onMounted(() => {
     enrichedUser()
   })
