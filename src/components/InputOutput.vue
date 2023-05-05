@@ -15,14 +15,19 @@
 }
 
   onMounted(() => {
-    enrichedUser()
+    // enrichedUser()
   })
 
   const dialogVisible = ref(false)
 
   const power = ref(0)
 
-  const enrichedUser = async () => {
+  // onMounted(() => {
+  //   enrichedUser()
+  // })
+
+
+  /* const enrichedUser = async () => {
     try {
       const user = await getCurrentSession()
       if (user) {
@@ -61,8 +66,8 @@
     } catch (err) {
       throw err
     }
-  }
-
+   } */
+  // const randomMessage = getRandomMessage()
   const count = ref(0)
   const userInput = ref('')
   const outputString = ref(null)
@@ -84,8 +89,7 @@
     isRequestSended.value = true
 
     //@ts-ignore
-    const BASE_URL =
-      process.env.NODE_ENV !== 'development'
+    const BASE_URL = process.env.NODE_ENV !== 'development'
         ? '/translate'
         : 'http://127.0.0.1:8080/translate'
 
