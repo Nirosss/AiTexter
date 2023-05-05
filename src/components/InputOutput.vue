@@ -3,14 +3,14 @@
   import axios from 'axios'
   import { ElMessage, ElMessageBox } from 'element-plus'
   import { ArrowDown } from '@element-plus/icons-vue'
-
-  onMounted(() => {
-    enrichedUser()
-  })
-
   const power = ref(0)
 
-  const enrichedUser = async () => {
+  // onMounted(() => {
+  //   enrichedUser()
+  // })
+
+
+  /* const enrichedUser = async () => {
     try {
       const user = await getCurrentSession()
       if (user) {
@@ -49,7 +49,7 @@
     } catch (err) {
       throw err
     }
-  }
+   } */
 
   const count = ref(0)
   const userInput = ref('')
