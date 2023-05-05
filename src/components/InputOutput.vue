@@ -3,6 +3,7 @@
   import axios from 'axios'
   import { ElMessage, ElMessageBox } from 'element-plus'
   import { ArrowDown } from '@element-plus/icons-vue'
+  import { getRandomMessage } from '../services/DefaultMessages'
   const power = ref(0)
 
   // onMounted(() => {
@@ -50,7 +51,7 @@
       throw err
     }
    } */
-
+  // const randomMessage = getRandomMessage()
   const count = ref(0)
   const userInput = ref('')
   const outputString = ref(null)
