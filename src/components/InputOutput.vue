@@ -8,6 +8,8 @@
     enrichedUser()
   })
 
+  const dialogVisible = ref(false)
+
   const power = ref(0)
 
   const enrichedUser = async () => {
@@ -158,6 +160,10 @@
       value: 'Documentation',
       label: 'As an official documentation of an API or web service',
     },
+    {
+      value: 'hr',
+      label: 'An HR representative talking to an employee',
+    }
   ]
 </script>
 
@@ -172,7 +178,8 @@
           placeholder="Place your text here"
           v-model="userInput"></textarea>
           <div class="user-input-actions">
-          <el-tooltip content="Select ReWrite Type" placement="bottom" effect="light">
+            <div class="rewrite-options-wrapper">
+              <el-tooltip content="Select ReWrite Style" placement="bottom" effect="light">
           <el-select
             v-model="formatType"
             class="m-2"
@@ -185,11 +192,14 @@
               :value="item.value" />
           </el-select>
         </el-tooltip>
+            </div>
+            
+            
         <el-tooltip content="ReWrite!" placement="bottom" effect="light">
           <button
-            :class="{ isActive: userInput && formatType }"
-            @click="sendFormattingRequest">
-            <svg
+            class="isActive"
+            @click="() => (userInput && formatType) ? sendFormattingRequest() : dialogVisible = true">
+            <svg 
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
@@ -344,7 +354,7 @@
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item
-                  @click="() => copyToClipboard(variation)"
+                  @click="() => output.value = variation"
                   v-for="variation in outputList.value"
                   >{{ variation }}
                 </el-dropdown-item>
@@ -397,6 +407,35 @@
         >
       </p>
     </section>
+
+    <el-dialog
+    v-model="dialogVisible"
+    title="Tips"
+    width="30%"
+    :before-close="handleClose"
+    >
+     
+    <div class="block text-center">
+    <span class="demonstration"
+      >Switch when indicator is hovered (default)</span
+    >
+    <el-carousel height="150px">
+      <el-carousel-item v-for="item in 4" :key="item">
+        <h3 class="small justify-center" text="2xl">{{ item }}</h3>
+      </el-carousel-item>
+    </el-carousel>
+  </div>
+    
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="dialogVisible = false">
+          Confirm
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
+  
   </main>
 </template>
 
@@ -408,4 +447,6 @@
   .ai-output-actions {
     gap: 10px;
   }
+
+
 </style>
