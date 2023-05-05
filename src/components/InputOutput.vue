@@ -171,7 +171,8 @@
         <textarea
           placeholder="Place your text here"
           v-model="userInput"></textarea>
-        <div class="user-input-actions" :title="getTitle()">
+          <div class="user-input-actions">
+          <el-tooltip content="Select ReWrite Type" placement="bottom" effect="light">
           <el-select
             v-model="formatType"
             class="m-2"
@@ -183,6 +184,8 @@
               :label="item.label"
               :value="item.value" />
           </el-select>
+        </el-tooltip>
+        <el-tooltip content="ReWrite!" placement="bottom" effect="light">
           <button
             :class="{ isActive: userInput && formatType }"
             @click="sendFormattingRequest">
@@ -198,8 +201,10 @@
             </svg>
             ReWrite
           </button>
+        </el-tooltip>
         </div>
       </section>
+      
       <section class="ai-output">
         <div class="string-wrapper">
           <svg
@@ -325,6 +330,7 @@
         </div>
 
         <div class="ai-output-actions">
+          <el-tooltip content="Select Variation" placement="bottom" effect="light">
           <el-dropdown trigger="click" :disabled="outputList.value.length <= 1">
             <el-button  title="Click to see if we have alternative suggestions"
               type="primary"
@@ -345,6 +351,8 @@
               </el-dropdown-menu>
             </template>
           </el-dropdown>
+        </el-tooltip>
+        <el-tooltip content="Copy Current Text" placement="bottom" effect="light">
           <button
             :class="{ isActive: output.value }"
             @click="() => copyToClipboard()">
@@ -362,6 +370,7 @@
             </svg>
             Copy
           </button>
+        </el-tooltip>
         </div>
       </section>
     </section>
