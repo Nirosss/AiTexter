@@ -30,18 +30,18 @@ export function getRandomMessage() {
 export const instructions = [
   {
     text: '1. Type your text in the text area on the left',
-    img: '../../src/assets/images/slide1.jpg',
+    img: '../../src/assets/0.jpg',
   },
   {
     text: '2. Pick the style you want.',
-    img: '../../src/assets/images/Slide2.JPG',
+    img: '../../src/assets/1.jpg',
   },
   {
     text: "3. Click 'rewrite' and watch the magic happen!",
-    img: '../../src/assets/images/Slide3.JPG',
+    img: '../../src/assets/2.jpg',
   },
   {
     text: "4. Copy the text you want with the 'copy' button.",
-    img: '../../src/assets/images/Slide1.JPG',
+    img: '../../src/assets/3.png',
   },
 ]

@@ -48,5 +48,6 @@
     border-radius: 5px;
     margin: 0;
     gap: 20px;
+    cursor: pointer;
 }
 </style>

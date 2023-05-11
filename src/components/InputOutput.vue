@@ -437,16 +437,14 @@
     <el-carousel height="150px">
       <el-carousel-item v-for="item in instructions" :key="item">
         <h3 class="small justify-center" text="2xl">{{ item.text }}</h3>
-      <img :src="item.img" alt="">
       </el-carousel-item>
     </el-carousel>
   </div>
     
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
         <el-button type="primary" @click="dialogVisible = false">
-          Confirm
+          Close
         </el-button>
       </span>
     </template>
@@ -462,6 +460,15 @@
 
   .ai-output-actions {
     gap: 10px;
+  }
+
+  @media screen and (max-width: 750px) {
+    .el-dialog {
+        width: 70% !important;
+    }
+    .header-btn:first-child {
+      font-size: 0.6rem !important;
+    }
   }
 
 

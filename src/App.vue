@@ -5,10 +5,12 @@
   import AboutModal from './components/AboutModal.vue'
   import { getStrings } from './services/history.service' 
 
+  import { ElMessage } from 'element-plus'
+
   const showAboutModal = ref(false)
   const showLoginModal = ref(false)
-  const isDark = localStorage.getItem('isDark')
-  const isDarkClass = ref(isDark === 'false')
+  const isDark = JSON.parse(localStorage.getItem('isDark') ?? "false")
+  const isDarkClass = ref(isDark)
   const currentOpenModal = ref('')
   const isLoggedIn = ref(false)
   const drawer = ref(false)
@@ -25,7 +27,21 @@
   }
   function toggleDarkClass() {
     isDarkClass.value = !isDarkClass.value
-    localStorage.setItem('isDark', isDarkClass.value + '')
+    localStorage.setItem('isDark', JSON.stringify(isDarkClass.value))
+  }
+
+  function copyToClipboard(specVal: string = '') {
+    var input = document.createElement('input')
+    input.setAttribute('value', specVal)
+    document.body.appendChild(input)
+    input.select()
+    var result = document.execCommand('copy')
+    document.body.removeChild(input)
+    ElMessage({
+        message: 'The Text has been copied',
+        type: 'success',
+      })
+    return result
   }
 
 </script>
@@ -46,7 +62,7 @@
       v-click-outside="toggleModal"
       class="about-modal" />
     <el-drawer v-model="drawer"  :with-header="false" :style="{ backgroundColor: isDark ? '#27272f' : '#86459f'}">
-        <p v-for="str in getStrings()" class="history-string">
+        <p style="curser: pointer;" v-for="str in getStrings()" class="history-string" @click="copyToClipboard(str)">
           {{ str }}
         </p>
     </el-drawer>
