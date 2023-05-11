@@ -3,6 +3,7 @@
   import axios from 'axios'
   import { ElMessage, ElMessageBox } from 'element-plus'
   import { ArrowDown } from '@element-plus/icons-vue'
+  import { instructions } from '../services/DefaultMessages'
   import { saveString } from '../services/history.service'
 
   const handleClose = (done: () => void) => {
@@ -423,21 +424,20 @@
         >
       </p>
     </section>
-
     <el-dialog
     v-model="dialogVisible"
     title="Tips"
     width="30%"
-    :before-close="handleClose"
     >
-     
     <div class="block text-center">
     <span class="demonstration"
-      >Switch when indicator is hovered (default)</span
+      >Hey there, looks like you haven't typed anything yet. 
+      Here's a quick guide on how to use our tool.</span
     >
     <el-carousel height="150px">
-      <el-carousel-item v-for="item in 4" :key="item">
-        <h3 class="small justify-center" text="2xl">{{ item }}</h3>
+      <el-carousel-item v-for="item in instructions" :key="item">
+        <h3 class="small justify-center" text="2xl">{{ item.text }}</h3>
+      <img :src="item.img" alt="">
       </el-carousel-item>
     </el-carousel>
   </div>
